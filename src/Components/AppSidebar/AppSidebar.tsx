@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import {
   Sidebar,
   SidebarContent,
@@ -20,7 +20,7 @@ type TAppSidebarProps = {
 const AppSidebar = ({ role }: TAppSidebarProps) => {
   return (
     <Sidebar>
-      <SidebarHeader>
+      <SidebarHeader className="text-xl text-[var(--color-black)] font-medium py-4">
         {role === "seller"
           ? "Seller Dashboard"
           : role === "customer"
@@ -29,17 +29,26 @@ const AppSidebar = ({ role }: TAppSidebarProps) => {
       </SidebarHeader>
 
       <SidebarContent>
-        <SidebarMenu>
+        <SidebarMenu className="space-y-1">
           {role === "seller" && (
             <>
               {sellerSidebarItems.map((item, index) => (
                 <SidebarMenuItem key={index}>
-                  <SidebarMenuButton asChild>
-                    <Link to={item.to}>
-                      <span>{item.icon}</span>
-                      {item.label}{" "}
-                    </Link>
-                  </SidebarMenuButton>
+                  <NavLink
+                    to={item.to}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-[var(--color-red)] font-semibold"
+                        : "text-[var(--color-gray)]"
+                    }
+                  >
+                    <SidebarMenuButton asChild>
+                      <span>
+                        <span>{item.icon}</span>
+                        {item.label}
+                      </span>
+                    </SidebarMenuButton>
+                  </NavLink>
                 </SidebarMenuItem>
               ))}
             </>

@@ -129,6 +129,11 @@ body {
 @theme {
   --color-red: #db4444;
   --color-white: #ffffff;
+  --color-black: #000000;
+  --color-green: #0acc58;
+  --color-gray-bg: #f9fafb;
+  --color-warning-bg: #fff7ed;
+  --color-warning-text: #c77414;
   --color-gray: #7d8184;
   --color-gray-border: #d1d5db;
 }
