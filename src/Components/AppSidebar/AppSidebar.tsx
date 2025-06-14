@@ -7,6 +7,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "../ui/sidebar";
+import {
+  customerSidebarItems,
+  publicNavItems,
+  sellerSidebarItems,
+} from "./SidebarItems";
 
 type TAppSidebarProps = {
   role: "seller" | "customer" | "public";
@@ -27,51 +32,46 @@ const AppSidebar = ({ role }: TAppSidebarProps) => {
         <SidebarMenu>
           {role === "seller" && (
             <>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link to="/seller/products">My Products</Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link to="/seller/orders">Total Orders</Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
+              {sellerSidebarItems.map((item, index) => (
+                <SidebarMenuItem key={index}>
+                  <SidebarMenuButton asChild>
+                    <Link to={item.to}>
+                      <span>{item.icon}</span>
+                      {item.label}{" "}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
             </>
           )}
 
           {role === "customer" && (
             <>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link to="/customer/orders">My Orders</Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link to="/customer/wishlist">Wishlist</Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
+              {customerSidebarItems.map((item, index) => (
+                <SidebarMenuItem key={index}>
+                  <SidebarMenuButton asChild>
+                    <Link to={item.to}>
+                      <span>{item.icon}</span>
+                      {item.label}{" "}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
             </>
           )}
 
           {role === "public" && (
             <>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link to="/">Home</Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link to="/shop">Shop</Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link to="/login">Login</Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
+              {publicNavItems.map((item, index) => (
+                <SidebarMenuItem key={index}>
+                  <SidebarMenuButton asChild>
+                    <Link to={item.to}>
+                      <span>{item.icon}</span>
+                      {item.label}{" "}
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
             </>
           )}
         </SidebarMenu>
