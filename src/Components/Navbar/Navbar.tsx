@@ -1,8 +1,5 @@
-import { useState } from "react";
 import arrowDownIcon from "../../assets/arrow-down.png";
 import notificationBellIcon from "../../assets/notification-bell.png";
-import menuIcon from "../../assets/menu-icon.png";
-import closeIcon from "../../assets/close-icon.png";
 import searchIcon from "../../assets/search-icon.png";
 
 import {
@@ -15,12 +12,12 @@ import { Avatar, AvatarFallback } from "../ui/avatar";
 import LanguageSection from "./LanguageSection";
 import LowerNav from "./LowerNav";
 import { Link, useNavigate } from "react-router";
+import { useState } from "react";
 import { Button } from "../ui/button";
+import { SidebarTrigger } from "../ui/sidebar";
 
 const Navbar = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  // Simulating auth with static data. It will replaced with real back end data soon
+  // Simulating auth with static data
   const [user, setUser] = useState({
     name: "Shahriar",
     role: "customer",
@@ -38,36 +35,25 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Navbar top part*/}
+      {/* Navbar top part */}
       <header className="w-full bg-[var(--color-white)]">
         {/* Top Border Wrapper */}
         <div className="w-full border-b border-[var(--color-gray-border)]">
           <nav className="max-w-screen-xl mx-auto px-4 py-3 flex items-center justify-between">
-            {/* Left: Mobile Menu Icon  */}
-            <div className="flex items-center gap-2">
-              <button
-                className="lg:hidden"
-                onClick={() => setSidebarOpen(true)}
-              >
-                <img src={menuIcon} alt="menu" className="w-6 h-6" />
-              </button>
-              <Link to={"/"}>
-                <div className="lg:block hidden">
-                  <h1 className="text-2xl uppercase font-bold text-[var(--color-red)]">
-                    Vendora
-                  </h1>
-                </div>
-              </Link>
-            </div>
-            <Link to={"/"}>
-              <div className="lg:hidden absolute left-1/2 top-3 transform -translate-x-1/2">
-                <h1 className="text-xl uppercase font-bold text-[var(--color-red)]">
+            {/* LEFT: Sidebar button and logo */}
+            <div className="flex items-center gap-3">
+              {/* Sidebar button (for mobile) */}
+              <SidebarTrigger />
+
+              {/* Logo (always visible) */}
+              <Link to="/">
+                <h1 className="text-xl lg:text-2xl uppercase font-bold text-[var(--color-red)]">
                   Vendora
                 </h1>
-              </div>
-            </Link>
+              </Link>
+            </div>
 
-            {/* Right Section */}
+            {/* RIGHT: Language, Bell, Avatar */}
             <div className="flex items-center gap-4">
               <LanguageSection />
 
@@ -115,7 +101,6 @@ const Navbar = () => {
         </div>
 
         {/* Navbar bottom part */}
-        {/* Bottom Border Wrapper */}
         <div className="w-full border-b border-[var(--color-gray-border)]">
           <nav className="max-w-screen-xl mx-auto px-4 py-3">
             <div className="flex lg:items-center lg:justify-between flex-col lg:flex-row gap-2">
@@ -137,26 +122,6 @@ const Navbar = () => {
           </nav>
         </div>
       </header>
-
-      {/* Sidebar Drawer */}
-      {sidebarOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 z-50">
-          <div className="w-64 h-full bg-white shadow-lg p-4 relative">
-            <button
-              onClick={() => setSidebarOpen(false)}
-              className="absolute top-2 right-2"
-            >
-              <img src={closeIcon} alt="close" className="w-5 h-5" />
-            </button>
-            <ul className="mt-10 space-y-4">
-              <li className="text-lg font-semibold">Home</li>
-              <li className="text-lg font-semibold">Shop</li>
-              <li className="text-lg font-semibold">Orders</li>
-              <li className="text-lg font-semibold">Account</li>
-            </ul>
-          </div>
-        </div>
-      )}
     </>
   );
 };
