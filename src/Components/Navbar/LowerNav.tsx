@@ -6,6 +6,7 @@ import {
 } from "../ui/dropdown-menu";
 import arrowDownIcon from "../../assets/arrow-down.png";
 import searchIcon from "../../assets/search-icon.png";
+import { Button } from "../ui/button";
 
 const LowerNav = () => {
   return (
@@ -38,9 +39,9 @@ const LowerNav = () => {
           />
         </div>
       </div>
-      <button className="ml-2 bg-[var(--color-red)] text-white px-4 py-2 rounded">
+      <Button className="ml-2 bg-[var(--color-red)] text-white rounded-sm px-6">
         Search
-      </button>
+      </Button>
     </div>
   );
 };

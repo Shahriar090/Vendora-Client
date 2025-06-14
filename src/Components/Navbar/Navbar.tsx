@@ -14,9 +14,27 @@ import {
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import LanguageSection from "./LanguageSection";
 import LowerNav from "./LowerNav";
+import { Link, useNavigate } from "react-router";
+import { Button } from "../ui/button";
 
 const Navbar = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // Simulating auth with static data. It will replaced with real back end data soon
+  const [user, setUser] = useState({
+    name: "Shahriar",
+    role: "customer",
+  });
+
+  const navigate = useNavigate();
+
+  const handleProfileClick = () => {
+    if (user.role === "seller") {
+      navigate("/seller/dashboard");
+    } else {
+      navigate("/customer/dashboard");
+    }
+  };
 
   return (
     <>
@@ -33,18 +51,21 @@ const Navbar = () => {
               >
                 <img src={menuIcon} alt="menu" className="w-6 h-6" />
               </button>
-              <div className="lg:block hidden">
-                <h1 className="text-2xl uppercase font-bold text-[var(--color-red)]">
+              <Link to={"/"}>
+                <div className="lg:block hidden">
+                  <h1 className="text-2xl uppercase font-bold text-[var(--color-red)]">
+                    Vendora
+                  </h1>
+                </div>
+              </Link>
+            </div>
+            <Link to={"/"}>
+              <div className="lg:hidden absolute left-1/2 top-3 transform -translate-x-1/2">
+                <h1 className="text-xl uppercase font-bold text-[var(--color-red)]">
                   Vendora
                 </h1>
               </div>
-            </div>
-
-            <div className="lg:hidden absolute left-1/2 transform -translate-x-1/2">
-              <h1 className="text-xl uppercase font-bold text-[var(--color-red)]">
-                Vendora
-              </h1>
-            </div>
+            </Link>
 
             {/* Right Section */}
             <div className="flex items-center gap-4">
@@ -67,14 +88,26 @@ const Navbar = () => {
                     <AvatarFallback>SH</AvatarFallback>
                   </Avatar>
                   <span className="hidden sm:block font-semibold">
-                    Shahriar
+                    {user.name}
                   </span>
                   <img src={arrowDownIcon} alt="down" className="w-4 h-4" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem>My Profile</DropdownMenuItem>
+                  <DropdownMenuItem onClick={handleProfileClick}>
+                    My Profile
+                  </DropdownMenuItem>
                   <DropdownMenuItem>Settings</DropdownMenuItem>
                   <DropdownMenuItem>Logout</DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => setUser({ ...user, role: "customer" })}
+                  >
+                    Set As Customer
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => setUser({ ...user, role: "seller" })}
+                  >
+                    Set As Seller
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
@@ -96,9 +129,9 @@ const Navbar = () => {
                   placeholder="Search..."
                   className="w-full p-2 pl-4 pr-10 border rounded"
                 />
-                <button className="absolute right-2 top-1/2 -translate-y-1/2">
+                <Button className="absolute right-2 top-1/2 -translate-y-1/2 ml-2 bg-[var(--color-red)] rounded-sm">
                   <img src={searchIcon} alt="Search Icon" className="w-5 h-5" />
-                </button>
+                </Button>
               </div>
             </div>
           </nav>
