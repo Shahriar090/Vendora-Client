@@ -20,7 +20,7 @@ type TAppSidebarProps = {
 const AppSidebar = ({ role }: TAppSidebarProps) => {
   return (
     <Sidebar>
-      <SidebarHeader className="text-xl text-[var(--color-black)] font-medium py-4">
+      <SidebarHeader className="text-xl text-[var(--color-black)] font-medium py-4 bg-[var(--color-white)]">
         {role === "seller"
           ? "Seller Dashboard"
           : role === "customer"
@@ -28,7 +28,7 @@ const AppSidebar = ({ role }: TAppSidebarProps) => {
           : "Navigation"}
       </SidebarHeader>
 
-      <SidebarContent>
+      <SidebarContent className="bg-[var(--color-white)]">
         <SidebarMenu className="space-y-1">
           {role === "seller" && (
             <>
