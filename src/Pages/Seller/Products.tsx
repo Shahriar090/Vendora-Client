@@ -119,10 +119,12 @@ const Products = () => {
                   <TableCell>{product.status}</TableCell>
                   <TableCell>
                     <div className="flex gap-4">
-                      <Button size="sm" variant="outline">
-                        <SquarePen className="w-4 h-4" />
-                        <span>Edit</span>
-                      </Button>
+                      <Link to="/seller/edit-product">
+                        <Button size="sm" variant="outline">
+                          <SquarePen className="w-4 h-4" />
+                          <span>Edit</span>
+                        </Button>
+                      </Link>
                       <Button
                         size="sm"
                         variant="outline"

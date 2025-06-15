@@ -11,6 +11,7 @@ import Login from "@/Pages/Public/Login";
 import NotFound from "@/Pages/Public/NotFound";
 import Register from "@/Pages/Public/Register";
 import AddProduct from "@/Pages/Seller/AddProduct";
+import EditProduct from "@/Pages/Seller/EditProduct";
 import Orders from "@/Pages/Seller/Orders";
 import Payments from "@/Pages/Seller/Payments";
 import Products from "@/Pages/Seller/Products";
@@ -52,6 +53,10 @@ const routes: RouteObject[] = [
       {
         path: "add-product",
         element: <AddProduct />,
+      },
+      {
+        path: "edit-product",
+        element: <EditProduct />,
       },
       {
         path: "orders",
