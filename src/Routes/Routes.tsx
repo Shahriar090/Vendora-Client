@@ -10,13 +10,13 @@ import Wishlist from "@/Pages/Customer/Wishlist";
 import Login from "@/Pages/Public/Login";
 import NotFound from "@/Pages/Public/NotFound";
 import Register from "@/Pages/Public/Register";
-import AddProduct from "@/Pages/Seller/AddProduct";
-import EditProduct from "@/Pages/Seller/EditProduct";
-import Orders from "@/Pages/Seller/Orders";
-import Payments from "@/Pages/Seller/Payments";
-import Products from "@/Pages/Seller/Products";
+import AddProduct from "@/Pages/Seller/AddProduct/AddProduct";
+import EditProduct from "@/Pages/Seller/EditProduct/EditProduct";
+import Orders from "@/Pages/Seller/Orders/Orders";
+import Payments from "@/Pages/Seller/Payments/Payments";
+import Products from "@/Pages/Seller/Products/Products";
 import SellerDashboard from "@/Pages/Seller/SellerDashboard";
-import Settings from "@/Pages/Seller/Settings";
+import Settings from "@/Pages/Seller/Settings/Settings";
 import { createBrowserRouter, type RouteObject } from "react-router";
 
 const routes: RouteObject[] = [
