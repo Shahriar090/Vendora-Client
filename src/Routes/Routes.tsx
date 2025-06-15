@@ -10,6 +10,7 @@ import Wishlist from "@/Pages/Customer/Wishlist";
 import Login from "@/Pages/Public/Login";
 import NotFound from "@/Pages/Public/NotFound";
 import Register from "@/Pages/Public/Register";
+import AddProduct from "@/Pages/Seller/AddProduct";
 import Orders from "@/Pages/Seller/Orders";
 import Payments from "@/Pages/Seller/Payments";
 import Products from "@/Pages/Seller/Products";
@@ -47,6 +48,10 @@ const routes: RouteObject[] = [
       {
         path: "products",
         element: <Products />,
+      },
+      {
+        path: "add-product",
+        element: <AddProduct />,
       },
       {
         path: "orders",

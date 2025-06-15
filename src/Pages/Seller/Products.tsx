@@ -17,6 +17,7 @@ import {
 } from "@/Components/ui/table";
 import { PlusIcon, SearchIcon, SquarePen, Trash2Icon } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router";
 
 const products = [
   {
@@ -47,9 +48,11 @@ const Products = () => {
         {/* Header */}
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-bold">Products</h2>
-          <Button className="flex items-center gap-2 bg-[var(--color-red)] text-[var(--color-white)] rounded-sm">
-            <PlusIcon className="w-4 h-4" /> Add Product
-          </Button>
+          <Link to={"/seller/add-product"}>
+            <Button className="flex items-center gap-2 bg-[var(--color-red)] text-[var(--color-white)] rounded-sm">
+              <PlusIcon className="w-4 h-4" /> Add Product
+            </Button>
+          </Link>
         </div>
 
         {/* Filters */}
