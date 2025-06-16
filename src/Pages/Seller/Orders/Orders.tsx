@@ -11,6 +11,7 @@ import {
 import { Tabs, TabsList, TabsTrigger } from "@/Components/ui/tabs";
 import { Eye, Search, Truck } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router";
 
 const Orders = () => {
   const [selectedTab, setSelectedTab] = useState("all");
@@ -95,9 +96,15 @@ const Orders = () => {
                   <TableCell>{order.amount}</TableCell>
                   <TableCell>{order.status}</TableCell>
                   <TableCell className="space-x-2">
-                    <Button size="sm" variant="outline" className="rounded-xs">
-                      <Eye /> View
-                    </Button>
+                    <Link to="/seller/order-details">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="rounded-xs"
+                      >
+                        <Eye /> View
+                      </Button>
+                    </Link>
                     {order.status.toLowerCase() === "pending" && (
                       <Button
                         size="sm"

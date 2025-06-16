@@ -12,6 +12,7 @@ import NotFound from "@/Pages/Public/NotFound";
 import Register from "@/Pages/Public/Register";
 import AddProduct from "@/Pages/Seller/AddProduct/AddProduct";
 import EditProduct from "@/Pages/Seller/EditProduct/EditProduct";
+import OrderDetails from "@/Pages/Seller/Orders/OrderDetails";
 import Orders from "@/Pages/Seller/Orders/Orders";
 import Payments from "@/Pages/Seller/Payments/Payments";
 import Products from "@/Pages/Seller/Products/Products";
@@ -61,6 +62,10 @@ const routes: RouteObject[] = [
       {
         path: "orders",
         element: <Orders />,
+      },
+      {
+        path: "order-details",
+        element: <OrderDetails />,
       },
       {
         path: "payments",
