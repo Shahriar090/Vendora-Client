@@ -94,6 +94,12 @@ const Navbar = () => {
                   >
                     Set As Seller
                   </DropdownMenuItem>
+                  {user.role === "customer" && (
+                    <div className="lg:hidden">
+                      <DropdownMenuItem>Wishlist</DropdownMenuItem>
+                      <DropdownMenuItem>Cart</DropdownMenuItem>
+                    </div>
+                  )}
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
@@ -105,7 +111,7 @@ const Navbar = () => {
           <nav className="max-w-screen-xl mx-auto px-4 py-3">
             <div className="flex lg:items-center lg:justify-between flex-col lg:flex-row gap-2">
               {/* Desktop: Category + Input + Button */}
-              <LowerNav />
+              <LowerNav user={user} />
 
               {/* Mobile: Search Input */}
               <div className="lg:hidden w-full relative">

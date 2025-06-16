@@ -7,8 +7,20 @@ import {
 import arrowDownIcon from "../../assets/arrow-down.png";
 import searchIcon from "../../assets/search-icon.png";
 import { Button } from "../ui/button";
+import { Heart, ShoppingCart } from "lucide-react";
 
-const LowerNav = () => {
+// ------------------------
+type TUser = {
+  name: string;
+  role: string;
+};
+
+type TUserProps = {
+  user: TUser;
+};
+// -----------------------------
+
+const LowerNav = ({ user }: TUserProps) => {
   return (
     <div className="hidden lg:flex items-center w-full">
       <div className="flex items-center border rounded w-full overflow-hidden">
@@ -39,9 +51,29 @@ const LowerNav = () => {
           />
         </div>
       </div>
-      <Button className="ml-2 bg-[var(--color-red)] text-white rounded-sm px-6">
-        Search
-      </Button>
+      <div className="flex items-center gap-2">
+        <Button className="ml-2 bg-[var(--color-red)] text-white rounded-sm px-6">
+          Search
+        </Button>
+        {user.role === "customer" && (
+          <div className="flex items-center gap-2 text-[var(--color-gray)]">
+            <Button
+              size={"sm"}
+              variant={"outline"}
+              className="border-0 shadow-none"
+            >
+              <Heart /> Wishlist
+            </Button>
+            <Button
+              size={"sm"}
+              variant={"outline"}
+              className="border-0 shadow-none"
+            >
+              <ShoppingCart /> Cart
+            </Button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

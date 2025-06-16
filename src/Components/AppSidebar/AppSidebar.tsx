@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router";
+import { NavLink } from "react-router";
 import {
   Sidebar,
   SidebarContent,
@@ -58,12 +58,21 @@ const AppSidebar = ({ role }: TAppSidebarProps) => {
             <>
               {customerSidebarItems.map((item, index) => (
                 <SidebarMenuItem key={index}>
-                  <SidebarMenuButton asChild>
-                    <Link to={item.to}>
-                      <span>{item.icon}</span>
-                      {item.label}{" "}
-                    </Link>
-                  </SidebarMenuButton>
+                  <NavLink
+                    to={item.to}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-[var(--color-red)] font-semibold"
+                        : "text-[var(--color-gray)]"
+                    }
+                  >
+                    <SidebarMenuButton asChild>
+                      <span>
+                        <span>{item.icon}</span>
+                        {item.label}
+                      </span>
+                    </SidebarMenuButton>
+                  </NavLink>
                 </SidebarMenuItem>
               ))}
             </>
@@ -73,12 +82,21 @@ const AppSidebar = ({ role }: TAppSidebarProps) => {
             <>
               {publicNavItems.map((item, index) => (
                 <SidebarMenuItem key={index}>
-                  <SidebarMenuButton asChild>
-                    <Link to={item.to}>
-                      <span>{item.icon}</span>
-                      {item.label}{" "}
-                    </Link>
-                  </SidebarMenuButton>
+                  <NavLink
+                    to={item.to}
+                    className={({ isActive }) =>
+                      isActive
+                        ? "text-[var(--color-red)] font-semibold"
+                        : "text-[var(--color-gray)]"
+                    }
+                  >
+                    <SidebarMenuButton asChild>
+                      <span>
+                        <span>{item.icon}</span>
+                        {item.label}
+                      </span>
+                    </SidebarMenuButton>
+                  </NavLink>
                 </SidebarMenuItem>
               ))}
             </>
