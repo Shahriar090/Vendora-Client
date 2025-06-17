@@ -8,6 +8,7 @@ import arrowDownIcon from "../../assets/arrow-down.png";
 import searchIcon from "../../assets/search-icon.png";
 import { Button } from "../ui/button";
 import { Heart, ShoppingCart } from "lucide-react";
+import { Link } from "react-router";
 
 // ------------------------
 type TUser = {
@@ -64,13 +65,15 @@ const LowerNav = ({ user }: TUserProps) => {
             >
               <Heart /> Wishlist
             </Button>
-            <Button
-              size={"sm"}
-              variant={"outline"}
-              className="border-0 shadow-none"
-            >
-              <ShoppingCart /> Cart
-            </Button>
+            <Link to={"/customer/cart"}>
+              <Button
+                size={"sm"}
+                variant={"outline"}
+                className="border-0 shadow-none"
+              >
+                <ShoppingCart /> Cart
+              </Button>
+            </Link>
           </div>
         )}
       </div>

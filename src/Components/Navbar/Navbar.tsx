@@ -97,7 +97,10 @@ const Navbar = () => {
                   {user.role === "customer" && (
                     <div className="lg:hidden">
                       <DropdownMenuItem>Wishlist</DropdownMenuItem>
-                      <DropdownMenuItem>Cart</DropdownMenuItem>
+                      <Link to={"/customer/cart"}>
+                        {" "}
+                        <DropdownMenuItem>Cart</DropdownMenuItem>
+                      </Link>
                     </div>
                   )}
                 </DropdownMenuContent>

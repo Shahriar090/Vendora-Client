@@ -1,12 +1,13 @@
 import CustomerLayout from "@/Layouts/CustomerLayout";
 import PublicLayout from "@/Layouts/PublicLayout";
 import SellerLayout from "@/Layouts/SellerLayout";
+import Cart from "@/Pages/Customer/Cart/Cart";
 import CustomerDashboard from "@/Pages/Customer/CustomerDashboard";
-import CustomerSettings from "@/Pages/Customer/CustomerSettings";
-import MyOrders from "@/Pages/Customer/MyOrders";
-import Profile from "@/Pages/Customer/Profile";
-import Support from "@/Pages/Customer/Support";
-import Wishlist from "@/Pages/Customer/Wishlist";
+import CustomerSettings from "@/Pages/Customer/CustomerSettings/CustomerSettings";
+import MyOrders from "@/Pages/Customer/MyOrders/MyOrders";
+import Profile from "@/Pages/Customer/Profile/Profile";
+import Support from "@/Pages/Customer/Support/Support";
+import Wishlist from "@/Pages/Customer/Wishlist/Wishlist";
 import Login from "@/Pages/Public/Login";
 import NotFound from "@/Pages/Public/NotFound";
 import Register from "@/Pages/Public/Register";
@@ -96,6 +97,10 @@ const routes: RouteObject[] = [
       {
         path: "wishlist",
         element: <Wishlist />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
       },
       {
         path: "profile",
