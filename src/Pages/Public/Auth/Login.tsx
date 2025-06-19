@@ -10,10 +10,12 @@ import { loginDefaultValues } from "./auth.constants";
 import axios from "axios";
 import { toast } from "sonner";
 import { getErrorMessage } from "./auth.utils";
+import { useAuth } from "@/Hooks/useAuth";
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+  const { setAuthData } = useAuth();
 
   const handleLogin = async (data: TLoginUserForm) => {
     setIsLoading(true);
@@ -21,17 +23,21 @@ const Login = () => {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_SERVER_LOCAL_URL}/auth/login`,
-        data
+        data,
+        { withCredentials: true }
       );
       toast.success("Login Successful", {
         duration: 3000,
         position: "top-right",
       });
-      console.log(response);
       if (!response.data?.data) {
         throw new Error("Invalid Response");
       }
-      const { user } = response.data.data;
+      const { user, token } = response.data.data;
+      setAuthData({
+        user,
+        accessToken: token.accessToken,
+      });
       navigate(
         user?.role === "Customer"
           ? "/customer/dashboard"
