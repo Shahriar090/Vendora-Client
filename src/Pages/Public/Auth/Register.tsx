@@ -9,12 +9,13 @@ import { useState } from "react";
 import axios from "axios";
 import { getErrorMessage } from "./auth.utils";
 import { toast } from "sonner";
+import { Link, useNavigate } from "react-router";
 
 const Register = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const handleRegister = async (data: TRegisterUserForm) => {
-    console.log("Form submitted with data:", data);
     setIsLoading(true);
 
     try {
@@ -27,6 +28,7 @@ const Register = () => {
         position: "top-right",
       });
       console.log(response);
+      navigate("/login");
     } catch (error) {
       console.error(error);
       toast.error(getErrorMessage(error), {
@@ -106,6 +108,14 @@ const Register = () => {
             />
           </div>
         </FormWrapper>
+        <div className="pt-5 md:pt-0">
+          <h4 className="text-xs text-[var(--color-gray)] font-medium">
+            Already have an account?{" "}
+            <Link to={"/login"}>
+              <span className="text-[var(--color-blue)]">Login</span>
+            </Link>
+          </h4>
+        </div>
       </div>
     </section>
   );

@@ -1,3 +1,4 @@
+// register default values
 export const registerDefaultValues = {
   user: {
     name: {
@@ -13,4 +14,11 @@ export const registerDefaultValues = {
     },
     password: "",
   },
+};
+
+// login default values
+
+export const loginDefaultValues = {
+  email: "",
+  password: "",
 };
