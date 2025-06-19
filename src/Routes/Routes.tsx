@@ -20,6 +20,7 @@ import Products from "@/Pages/Seller/Products/Products";
 import SellerDashboard from "@/Pages/Seller/SellerDashboard";
 import Settings from "@/Pages/Seller/Settings/Settings";
 import { createBrowserRouter, type RouteObject } from "react-router";
+import ProtectedRoute from "./ProtectedRoute";
 
 const routes: RouteObject[] = [
   {
@@ -42,7 +43,11 @@ const routes: RouteObject[] = [
   },
   {
     path: "/seller",
-    element: <SellerLayout />,
+    element: (
+      <ProtectedRoute allowedRole="Seller">
+        <SellerLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "dashboard",
@@ -84,7 +89,11 @@ const routes: RouteObject[] = [
   },
   {
     path: "/customer",
-    element: <CustomerLayout />,
+    element: (
+      <ProtectedRoute allowedRole="Customer">
+        <CustomerLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "dashboard",
