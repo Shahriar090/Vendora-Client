@@ -12,21 +12,17 @@ import { Avatar, AvatarFallback } from "../ui/avatar";
 import LanguageSection from "./LanguageSection";
 import LowerNav from "./LowerNav";
 import { Link, useNavigate } from "react-router";
-import { useState } from "react";
 import { Button } from "../ui/button";
 import { SidebarTrigger } from "../ui/sidebar";
+import { useAuth } from "@/Hooks/useAuth";
 
 const Navbar = () => {
-  // Simulating auth with static data
-  const [user, setUser] = useState({
-    name: "Shahriar",
-    role: "customer",
-  });
+  const { auth, logout } = useAuth();
 
   const navigate = useNavigate();
 
   const handleProfileClick = () => {
-    if (user.role === "seller") {
+    if (auth.user?.role === "Seller") {
       navigate("/seller/dashboard");
     } else {
       navigate("/customer/dashboard");
@@ -71,10 +67,12 @@ const Navbar = () => {
               <DropdownMenu>
                 <DropdownMenuTrigger className="flex items-center gap-2 text-sm">
                   <Avatar className="h-6 w-6">
-                    <AvatarFallback>SH</AvatarFallback>
+                    <AvatarFallback>
+                      {auth.user?.name.firstName.slice(0, 1)}
+                    </AvatarFallback>
                   </Avatar>
                   <span className="hidden sm:block font-semibold">
-                    {user.name}
+                    {auth.user?.name.firstName}
                   </span>
                   <img src={arrowDownIcon} alt="down" className="w-4 h-4" />
                 </DropdownMenuTrigger>
@@ -83,18 +81,16 @@ const Navbar = () => {
                     My Profile
                   </DropdownMenuItem>
                   <DropdownMenuItem>Settings</DropdownMenuItem>
-                  <DropdownMenuItem>Logout</DropdownMenuItem>
-                  <DropdownMenuItem
-                    onClick={() => setUser({ ...user, role: "customer" })}
-                  >
-                    Set As Customer
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    onClick={() => setUser({ ...user, role: "seller" })}
-                  >
-                    Set As Seller
-                  </DropdownMenuItem>
-                  {user.role === "customer" && (
+                  {auth.user ? (
+                    <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
+                  ) : (
+                    <Link to={"/login"}>
+                      {" "}
+                      <DropdownMenuItem>Login</DropdownMenuItem>
+                    </Link>
+                  )}
+
+                  {auth.user?.role === "Customer" && (
                     <div className="lg:hidden">
                       <DropdownMenuItem>Wishlist</DropdownMenuItem>
                       <Link to={"/customer/cart"}>
@@ -114,7 +110,7 @@ const Navbar = () => {
           <nav className="max-w-screen-xl mx-auto px-4 py-3">
             <div className="flex lg:items-center lg:justify-between flex-col lg:flex-row gap-2">
               {/* Desktop: Category + Input + Button */}
-              <LowerNav user={user} />
+              <LowerNav user={auth.user} />
 
               {/* Mobile: Search Input */}
               <div className="lg:hidden w-full relative">

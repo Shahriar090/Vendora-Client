@@ -12,12 +12,14 @@ import { Link } from "react-router";
 
 // ------------------------
 type TUser = {
-  name: string;
+  id: string;
+  email: string;
   role: string;
+  name: { firstName: string; middleName?: string; lastName: string };
 };
 
 type TUserProps = {
-  user: TUser;
+  user: TUser | null;
 };
 // -----------------------------
 
@@ -56,7 +58,7 @@ const LowerNav = ({ user }: TUserProps) => {
         <Button className="ml-2 bg-[var(--color-red)] text-white rounded-sm px-6">
           Search
         </Button>
-        {user.role === "customer" && (
+        {user && user.role === "Customer" && (
           <div className="flex items-center gap-2 text-[var(--color-gray)]">
             <Button
               size={"sm"}

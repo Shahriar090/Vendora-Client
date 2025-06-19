@@ -16,12 +16,19 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("auth", JSON.stringify(authData));
   }, []);
 
+  //   logout functionality
+  const logout = useCallback(() => {
+    setAuth({ user: null, accessToken: "" });
+    localStorage.removeItem("auth");
+  }, []);
+
   const value: TAuthContext = useMemo(
     () => ({
       auth,
       setAuthData,
+      logout,
     }),
-    [auth, setAuthData]
+    [auth, setAuthData, logout]
   );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
