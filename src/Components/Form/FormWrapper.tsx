@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useForm } from "react-hook-form";
+import { useForm, type Control } from "react-hook-form";
 import type { TFormWrapper } from "./form.types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { type ReactElement } from "react";
 import { Form } from "../ui/form";
 import { Button } from "../ui/button";
 
@@ -30,13 +30,20 @@ const FormWrapper = ({
       }
 
       // Check if this is an InputField component
-      if (
-        (child.type && (child.type as any).name === "InputField") ||
-        (child.type as any).displayName === "InputField"
-      ) {
-        // Inject the `control` from useForm
-        return React.cloneElement(child, {
-          ...(child.props as any),
+      // if (
+      //   (child.type && (child.type as any).name === "InputField") ||
+      //   (child.type as any).displayName === "InputField"
+      // ) {
+      //   // Inject the `control` from useForm
+      //   return React.cloneElement(child, {
+      //     ...(child.props as any),
+      //     control: form.control,
+      //   });
+      // }
+      const props = child.props as { name?: string; control?: Control<any> };
+      if ("name" in props) {
+        return React.cloneElement(child as ReactElement<any>, {
+          ...props,
           control: form.control,
         });
       }
