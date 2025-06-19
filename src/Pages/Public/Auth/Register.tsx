@@ -20,7 +20,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_SERVER_LOCAL_URL}/users/create-user`,
+        `${import.meta.env.VITE_SERVER_DEPLOYED_URL}/users/create-user`,
         data
       );
       toast.success("User Registration Successful", {

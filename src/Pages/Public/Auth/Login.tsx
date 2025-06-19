@@ -22,7 +22,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_SERVER_LOCAL_URL}/auth/login`,
+        `${import.meta.env.VITE_SERVER_DEPLOYED_URL}/auth/login`,
         data,
         { withCredentials: true }
       );
