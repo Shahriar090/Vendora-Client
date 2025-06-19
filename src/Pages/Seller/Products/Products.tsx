@@ -42,6 +42,8 @@ const products = [
 const Products = () => {
   const [category, setCategory] = useState("");
   const [stockStatus, setStockStatus] = useState("");
+  console.log(category);
+  console.log(stockStatus);
   return (
     <div className="bg-[var(--color-gray-bg)] h-full">
       <div className="space-y-6 max-w-screen-xl mx-auto pt-5 bg-[var(--color-gray-bg)] h-full px-4">

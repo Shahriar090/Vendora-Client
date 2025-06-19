@@ -15,11 +15,12 @@ import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 
 const AddProduct = () => {
-  const onDrop = useCallback((acceptedFiles) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onDrop = useCallback((acceptedFiles: any) => {
     console.log(acceptedFiles);
   }, []);
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
   return (
     <section className="bg-[var(--color-gray-bg)]">
       <div className="max-w-screen-xl mx-auto px-4 py-6 space-y-6">
